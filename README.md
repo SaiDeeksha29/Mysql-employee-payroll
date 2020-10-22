@@ -56,3 +56,20 @@ CREATE TABLE employee_payroll
 ### Viewing gender
 ```SELECT * FROM employee_payroll;```
 
+## UC7 - Ability to Find Sum,Average,Min,Max,Count
+
+### Total salary according to gender
+```SELECT gender, SUM(salary) FROM employee_payroll GROUP BY gender;```
+
+### Average salary according to gender
+```SELECT gender, AVG(salary) FROM employee_payroll GROUP BY gender;```
+
+### Minimum salary according to gender
+```SELECT gender, MIN(salary) FROM employee_payroll GROUP BY gender;```
+
+### Maximum salary according to gender
+```SELECT gender, MAX(salary) FROM employee_payroll GROUP BY gender;```
+
+### Count of employees according to gender
+```SELECT gender, COUNT(salary) FROM employee_payroll GROUP BY gender;```
+
