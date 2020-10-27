@@ -73,3 +73,25 @@ CREATE TABLE employee_payroll
 ### Count of employees according to gender
 ```SELECT gender, COUNT(salary) FROM employee_payroll GROUP BY gender;```
 
+## UC8 - Ability to extend employee_payroll data to store employee information like employee phone, address and department
+
+### Adding phone number to table after name
+```
+ALTER TABLE employee_payroll ADD phone_number VARCHAR(250) AFTER name;
+```
+
+### Adding address to table after phone number
+```
+ALTER TABLE employee_payroll ADD address VARCHAR(250) AFTER phone_number;
+```
+
+### Adding department after address
+```
+ALTER TABLE employee_payroll ADD department VARCHAR(150) NOT NULL AFTER address;
+```
+
+### Setting default value for address
+```
+ALTER TABLE employee_payroll ALTER address SET DEFAULT 'TBD';
+```
+
