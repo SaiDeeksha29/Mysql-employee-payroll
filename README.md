@@ -175,3 +175,78 @@ create table employee_department(
 -> )ENGINE=INNODB;
 ```
 
+## UC12 - Ensure all retrieve queries done
+### Inserting into company table
+```
+INSERT INTO company VALUES
+    -> (1,'Capgemini'),
+    -> (2,'Microsoft'),
+    -> (3,'Reliance');
+```
+
+### Inserting into employee table
+```
+INSERT INTO employee VALUES
+    -> (101,1,'8886771','Hyderabad','F','Deeksha'),
+    -> (102,2,'4567823','Chennai','F','Kavya'),
+    -> (103,3,'4567828','Pune','M','Karthik');
+```
+
+### Inserting into payroll table
+```
+INSERT INTO payroll VALUES
+    -> (101,50000,5000,45000,5000,40000),
+    -> (102,20000,2000,18000,3000,15000),
+    -> (103,60000,6000,54000,4000,50000);
+```
+
+### Inserting into department table
+```
+INSERT INTO department VALUES
+    -> (21,'AI'),
+    -> (22,'CSE'),
+    -> (23,'Sales and Marketing');
+```
+
+### Inserting into employee_department table
+```
+INSERT INTO employee_department VALUES
+    -> (101,21),
+    -> (102,22),
+    -> (103,23),
+    -> (102,21);
+```
+
+### Altering payroll table to add start date and insert values
+```
+ALTER TABLE payroll ADD start DATE;
+UPDATE payroll set start = '2019-10-12' where id=102;
+UPDATE payroll set start = '2018-1-15' where id=101;
+UPDATE payroll set start = '2018-5-9' where id=103;
+SELECT * from payroll where start between CAST('2019-1-1' AS DATE) and DATE(NOW());
+```
+
+### Total salary according to gender
+```
+select sum(p.net_pay),e.gender from employee e left join payroll p on p.ID=e.ID group by e.gender;
+```
+
+### Average salary according to gender
+```
+select avg(p.net_pay),e.gender from employee e left join payroll p on p.ID=e.ID group by e.gender;
+```
+
+### Minimum salary according to gender
+```
+select min(p.net_pay),e.gender from employee e left join payroll p on p.ID=e.ID group by e.gender;
+```
+
+### Maximum salary according to gender
+```
+select max(p.net_pay),e.gender from employee e left join payroll p on p.ID=e.ID group by e.gender;
+```
+
+### Count of employees according to gender
+```
+select count(p.net_pay),e.gender from employee e left join payroll p on p.ID=e.ID group by e.gender;
+```
