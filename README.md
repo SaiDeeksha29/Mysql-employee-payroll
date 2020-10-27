@@ -119,3 +119,59 @@ update employee_payroll set department='Sales' where name='Terisa';
 insert into employee_payroll (name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start)
 VALUES('Terisa', 'Marketing', 'F', 200000.00, 50000.00, 150000.00, 50000.00, 100000.00, '2018-01-03');
 ``` 
+
+## UC11 - Implement ER diagram
+### Creating table company
+```
+(
+-> company_ID  INT PRIMARY KEY,
+-> company_Name varchar(150) NOT NULL
+-> )ENGINE=INNODB;
+```
+
+### Creating table employee
+```
+CREATE TABLE employee
+-> (
+-> ID   INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> company_ID INT,
+-> phone_number    varchar(250),
+-> address         varchar(250),
+-> gender          char(1),
+-> Name            varchar(150) NOT NULL,
+-> FOREIGN KEY (company_ID) REFERENCES company (company_ID)
+-> )ENGINE=INNODB;
+```
+
+### Creating table payroll
+```
+CREATE TABLE payroll
+-> (
+-> ID   INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-> FOREIGN KEY (ID) REFERENCES employee (ID),
+-> basic_pay    DOUBLE NOT NULL,
+-> deductions   DOUBLE NOT NULL,
+-> taxable_pay  DOUBLE NOT NULL,
+-> tax          DOUBLE NOT NULL,
+-> net_pay      DOUBLE NOT NULL
+-> )ENGINE=INNODB;
+```
+
+### Creating table department
+```
+CREATE TABLE department(
+-> Department_ID int NOT NULL PRIMARY KEY,
+-> Department_Name varchar(150) NOT NULL
+-> )ENGINE=INNODB;
+```
+
+### Creating table employee_department
+```
+create table employee_department(
+-> ID   INT unsigned NOT NULL AUTO_INCREMENT,
+-> FOREIGN KEY (ID) REFERENCES employee (ID),
+-> Department_ID int NOT NULL,
+-> FOREIGN KEY (Department_ID) REFERENCES department (Department_ID)
+-> )ENGINE=INNODB;
+```
+
